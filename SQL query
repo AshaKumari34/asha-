@@ -62,4 +62,13 @@ cogs IS NULL
 OR 
 total_sale IS NULL;
 
+--Data Exploration
+--How many sales we have?
+SELECT COUNT(*) AS total_sales FROM retail_sales;
+--How many  unique customers we have
+SELECT COUNT( DISTINCT customer_id) AS total_customer FROM retail_sales;
+--select unique category
+SELECT DISTINCT category FROM retail_sales;
+
+
 
