@@ -36,10 +36,26 @@ CREATE TABLE retail_sales
 );
 ```
 # DATA EXPLORATION AND CLEANING:
--**Record count**:- check total number of rows in table.
--**NULL value**:-Check the null value in the table.
--**Customer Count**:-find how many unique customer id in dataset.
--**Category Count**:-Indetify all unique products in dataset.
+-**Record count**:- check total number of rows in table.<br>
+-**NULL value**:-Check the null value in the table and Delete those data.<br>
+-**Customer Count**:-find how many unique customer id in dataset.<br>
+-**Category Count**:-Indetify all unique products in dataset.<br>
+
+```sql
+SELECT COUNT(*) FROM retails_sale;
+SELECT COUNT(DISTINCT customer_id) FROM retails_sale;
+SELECT DISTINCT  category FROM retails_sale;
+SELECT * FROM  retails_sale
+WHERE 
+ sale_date IS NULL OR sale_time IS NULL OR customer_id  IS NULL OR  gender IS NULL OR 
+  age IS NULL OR  category IS NULL OR  quantiy IS NULL OR price_per_unit IS NULL OR cogs IS NULL OR total_sale IS NULL
+DELETE from retails_sale
+WHERE 
+ sale_date IS NULL OR sale_time IS NULL OR customer_id  IS NULL OR  gender IS NULL OR 
+  age IS NULL OR  category IS NULL OR  quantiy IS NULL OR price_per_unit IS NULL OR cogs IS NULL OR total_sale IS NULL;
+;
+```
+
 
 
 
