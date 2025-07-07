@@ -55,6 +55,15 @@ WHERE
   age IS NULL OR  category IS NULL OR  quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL OR total_sale IS NULL;
 ;
 ```
+**Exploring**<br>
+-Find total sales<br>
+-Identify unique customer<br>- total category<br>
+  ```sql SELECT COUNT(*) AS total_sales FROM retail_sales;
+  SELECT COUNT( DISTINCT customer_id) AS total_customer FROM retail_sales;
+  SELECT DISTINCT category FROM retail_sales;
+```
+
+  
 
 
 
