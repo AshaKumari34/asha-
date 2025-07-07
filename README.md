@@ -17,4 +17,32 @@
 1.**database setup**:- use create database for creating the table retails_sales<br>
 2.**Table Creation**:-use create  table in which we will write all the columns and store the data.<br>
 3.**Columns**:-transaction ID, sale date, sale time, customer ID, gender, age, product category, quantity sold, price per unit, cost of goods sold (COGS), and total sale amount.<br>
+```sql
+CREATE DATABASE p1_retail_db;
+
+CREATE TABLE retail_sales
+(
+    transactions_id INT PRIMARY KEY,
+    sale_date DATE,
+    sale_time TIME,
+    customer_id INT,
+    gender VARCHAR(10),
+    age INT,
+    category VARCHAR(35),
+    quantity INT,
+    price_per_unit FLOAT,
+    cogs FLOAT,
+    total_sale FLOAT
+);
+```
+# DATA EXPLORATION AND CLEANING:
+-**Record count**:- check total number of rows in table.
+-**NULL value**:-Check the null value in the table.
+-**Customer Count**:-find how many unique customer id in dataset.
+-**Category Count**:-Indetify all unique products in dataset.
+
+
+
+
+
 
