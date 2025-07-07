@@ -70,5 +70,19 @@ SELECT COUNT( DISTINCT customer_id) AS total_customer FROM retail_sales;
 --select unique category
 SELECT DISTINCT category FROM retail_sales;
 
+-- Data analysis or Business Problems & Answers
+--My Analysis
+--Q.1 Write a SQL query  to retrieve all columns  for sales made on '2022-11-05'
+ SELECT *  FROM retail_sales WHERE sale_date='2022-11-05';
+--Q.2 Write a SQL query to retrieve  all transcations where  the category is 'Clothing' and quantity  sold is  more than 4 in a month of Nov-2022 
+ SELECT*
+ FROM retail_sales 
+ WHERE category ='Clothing' 
+ AND
+ TO_CHAR(sale_date,'yyyy-mm')='2022-11'
+ AND
+ quantity >=4
+ ;
+
 
 
