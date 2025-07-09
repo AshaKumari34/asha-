@@ -90,6 +90,51 @@ SELECT * FROM  retail_sales WHERE total_sale >'1000';
 SELECT  gender ,category,COUNT(*) AS total_Transactions FROM retail_sales
 GROUP BY  gender,category ORDER BY 2;
 ```
+7.**Write a SQL query to calculate the average  sale of each month.Find out the best selling month in each year**?
+```sql
+SELECT year,month,avg_sale
+ FROM
+ ( SELECT EXTRACT( year from sale_date) AS year,EXTRACT( month from sale_date) AS month,AVG(total_sale) AS avg_sale ,
+RANK() OVER(PARTITION BY EXTRACT( year from sale_date) ORDER  BY AVG(total_sale) DESC) as rnk
+FROM retail_sales GROUP BY 1,2) as TB1 WHERE rnk=1;
+```
+8.**Write a SQL query to find the top 5 customers  based on highest total sales?**
+```sql
+SELECT customer_id, SUM(total_sales) AS Totalsales FROM retail_sale
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5;
+```
+9.**Write a SQL query to find the  number of unique customers who purchased  items from each category?
+```SQL
+SELECT  COUNT(DISTINCT customer_id) AS Customers,category FROM retail_sales
+GROUP BY  2;
+```
+10.**Write q query  to create  each shift  and number of order(example Morning<=12.Afternoon  between 12 &17,evening>17)**?
+```sql
+WITH Hourly_shift AS(
+SELECT* ,CASE
+WHEN EXTRACT(HOUR FROM sale_time)<=12 THEN'Morning'
+WHEN EXTRACT(HOUR FROM sale_time) BETWEEN 12 AND 17 THEN'Afternoon'
+ELSE 'Evening'
+END AS shift
+FROM retail_sales)
+SELECT shift,COUNT(*) AS Total_Orders FROM Hourly_shift
+GROUP BY 1;
+```
+
+# Finding
+1.**Sales Trends**:-Monthly analysis shows variations in sales, helping identify peak seasons.
+2.**Customer Insight**:-Identify  the top-spendng customers and the most popular category.
+3.**High-Value Transcation**:-Several Transaction  had aTotalsale amount greater than 1000,indicating primium purhases.
+4.**Customer Demographics**:-Identify Customer from various Age groupswith sales distributed across different categories such as Clothing and Beauty.
+# Reports
+1.**Sale Summary**:-Summarizing total sales,Customer Demographics and category performance
+2.**Trend Analysis**:-Insight into sales trends accross diffrent months and shifts.
+3.**Customer Insights**:-Reports on top customers and unique custome count per category.
+# Conculsion
+This project servers as comprehensive introduction to SQL for data analysts ,covering  database setup,data cleaning,exploratory data analysis,and business-driven SQL queries and also help in business decisions by understanding customer behavior,sales patterns and product performance.
+
 
 
 
