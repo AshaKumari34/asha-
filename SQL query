@@ -106,5 +106,27 @@ AVG(total_sale) as  avg_sale,
 RANK() OVER (PARTITION BY EXTRACT(YEAR FROM sale_date)  ORDER BY  AVG(total_sale)DESC) AS rnk
 FROM retail_sales 
 group by 1,2 ) AS T1 WHERE  rnk =1;
+--Q.8 Write a query to find  the top 5 customers based on  highest total sale?
+SELECT customer_id,SUM(total_sale) AS totalsales FROM retail_sales
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT  5;
+--Q.9 Write a SQL query to find the  number of unique customers who purchased  items from each category?
+SELECT  COUNT(DISTINCT customer_id) AS Customers,category FROM retail_sales
+GROUP BY  2;
+--Q.10 Write q query  to create  each shift  and number of order(example Morning<=12.Afternoon  between 12 &17,evening>17)?
+
+with hourly_shift
+AS(
+SELECT * ,CASE 
+WHEN EXTRACT (HOUR FROM sale_time)<= 12 THEN 'Morning'
+WHEN  EXTRACT (HOUR FROM sale_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+ELSE 'Evening'
+END AS shift
+from retail_sales)
+SELECT shift,COUNT(*) as totalorders
+from hourly_shift
+GROUP BY shift;
+
 
 
